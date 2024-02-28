@@ -9,6 +9,7 @@
 
     <artifactId>image</artifactId>
     <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
 
     <name>image</name>
     <url>http://maven.apache.org</url>

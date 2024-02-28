@@ -29,11 +29,11 @@ import java.util.stream.Collectors;
  * 4. Next to Permissions. Select 'Attach existing policies directly' and attack 'AmazonRekognitionFullAccess'
  * 5. Next through the remaining screens. Copy the 'Access key ID' and 'Secret access key' for this user.
  * 6. Create a config.properties file in the src/main/resources dir containing the keys referenced in this class
- *      aws.id=[your access key id]
- *      aws.secret=[your Secret access key]
- *      aws.region=[an aws region of choice. For example: us-east-2]
+ * aws.id=[your access key id]
+ * aws.secret=[your Secret access key]
+ * aws.region=[an aws region of choice. For example: us-east-2]
  */
-public class AwsImageService {
+public class AwsImageService implements IImageService {
 
     private Logger log = LoggerFactory.getLogger(AwsImageService.class);
 
@@ -44,7 +44,7 @@ public class AwsImageService {
         Properties props = new Properties();
         try (InputStream is = getClass().getClassLoader().getResourceAsStream("config.properties")) {
             props.load(is);
-        } catch (IOException ioe ) {
+        } catch (IOException ioe) {
             log.error("Unable to initialize AWS Rekognition, no properties file found", ioe);
             return;
         }
@@ -62,7 +62,8 @@ public class AwsImageService {
 
     /**
      * Returns true if the provided image contains a cat.
-     * @param image Image to scan
+     *
+     * @param image                Image to scan
      * @param confidenceThreshhold Minimum threshhold to consider for cat. For example, 90.0f would require 90% confidence minimum
      * @return
      */
